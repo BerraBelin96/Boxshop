@@ -12,26 +12,6 @@
      </head>
      
      <body>
-     
-        <div class="col-xs-11 col-sm-4 col-md-4 col-lg-2">
-
-                    <div class="thumbnail">
-
-                      <img src="http://via.placeholder.com/300x250" alt="Card image cap">
-
-                        <div class="caption">
-
-                            <h3>Product title</h3>
-
-                            <p>Description.</p><br/>
-
-                            <p class="card-text"><a class="add-to-cart" href="#" data-name="Box" data-price="5.00"><button class="btn btn-primary">Köp</button></a> $5.00 </p>
-
-                        </div>
-
-                    </div>
-
-                 </div>
          
          <div id="product">
 
@@ -39,18 +19,18 @@
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-var x;
-var products = "list//all";
+var products;
+var command;
 //$("#submit").click(function (e) {
 $(document).ready(function () {
-    var newContent = '';
+    
     //e.preventDefault();
     /*var products = [{ "id": 12,"type": 1 },
                { "id": 32 },
                { "id": 532 }
                ];*/
 
-   // products = "list//all";
+        command = "list//all";
     //products = "list//id//1";
 
     $.ajax({
@@ -60,19 +40,20 @@ $(document).ready(function () {
             data: products
         },*/
         data: {
-            data: JSON.stringify(products)
+            data: JSON.stringify(command)
         },
         success: function (responseText) {
             console.log(responseText);
             //document.write(responseText);
-            x = responseText;
+            products = responseText;
             //var response = JSON.parse(responseText);
             //var response = responseText;
             //var text = response[3].id;
             //document.getElementById("demo").innerHTML += "ID: " + x[3].id + "<br>" + "ID: " + x[4].id;
             //document.getElementById("product").innerHTML += "ID: " + x[0].id + "<br>";
             //document.write(text);
-            for (var i = 0; i < product.length ; i++) {
+            var newContent = '';
+            for (var i = 0; i < products.length ; i++) {
                 newContent += "<div class='col-xs-11 col-sm-4 col-md-4 col-lg-2'>";
                    newContent += "<div class='thumbnail'>";
 
@@ -80,11 +61,11 @@ $(document).ready(function () {
 
                         newContent += "<div class='caption'>";
 
-                          newContent +=  "<h3>Product title</h3>";
+                          newContent +=  "<h3>"+ products[i].name +"</h3>";
 
-                           newContent += "<p>Description.</p><br/>"
+                           newContent += "<p>Description.</p><br/>";
 
-                           newContent += "<p class='card-text'><a class='add-to-cart' href='#' data-name='"+ name +"' data-price='"+ price +"'><button class='btn btn-primary'>Köp</button></a>"+ price +" </p>";
+                           newContent += "<p class='card-text'><a class='add-to-cart' href='#' data-name='"+ products[i].name +"' data-price='"+ products[i].price +"'><button class='btn btn-primary'>Köp</button></a>"+ products[i].price +" </p>";
 
                        newContent += "</div>";
 
@@ -92,6 +73,8 @@ $(document).ready(function () {
 
                 newContent +=  "</div>";
             }
+
+            document.getElementById("product").innerHTML = newContent;
 
         },
         failure: function (errMsg) {
