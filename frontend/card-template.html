@@ -12,74 +12,78 @@
      </head>
      
      <body>
-     
-         <div class="col-xs-11 col-sm-4 col-md-4 col-lg-2">
-
-            <div class="thumbnail">
-
-              <img src="http://via.placeholder.com/300x250" alt="Card image cap">
-
-                <div class="caption">
-
-                    <h3>Product title</h3>
-
-                    <p>Description.</p><br/>
-
-                    <p class="card-text"><button class="btn btn-primary add" value="*" data-value="*">Köp</button> Price :-</p>
-
-                </div>
-
-            </div>
-             
-         </div>
          
-         <div>
-             
-             <h2>Modal Example</h2>
+         <div id="product">
 
-<!-- Trigger/Open The Modal -->
-<button id="myBtn">Open Modal</button>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
-
-</div>
-
+         </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-// Get the modal
-var modal = document.getElementById('myModal');
+var products;
+var command;
+//$("#submit").click(function (e) {
+$(document).ready(function () {
+    
+    //e.preventDefault();
+    /*var products = [{ "id": 12,"type": 1 },
+               { "id": 32 },
+               { "id": 532 }
+               ];*/
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+        command = "list//all";
+    //products = "list//id//1";
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+    $.ajax({
+        type: "POST",
+        url: "../backend/switch.php",
+        /*data: {
+            data: products
+        },*/
+        data: {
+            data: JSON.stringify(command)
+        },
+        success: function (responseText) {
+            console.log(responseText);
+            //document.write(responseText);
+            products = responseText;
+            //var response = JSON.parse(responseText);
+            //var response = responseText;
+            //var text = response[3].id;
+            //document.getElementById("demo").innerHTML += "ID: " + x[3].id + "<br>" + "ID: " + x[4].id;
+            //document.getElementById("product").innerHTML += "ID: " + x[0].id + "<br>";
+            //document.write(text);
+            var newContent = '';
+            for (var i = 0; i < products.length ; i++) {
+                newContent += "<div class='col-xs-11 col-sm-4 col-md-4 col-lg-2'>";
+                   newContent += "<div class='thumbnail'>";
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
+                     newContent += "<img src='http://via.placeholder.com/300x250' alt='Card image cap'>";
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
+                        newContent += "<div class='caption'>";
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
+                          newContent +=  "<h3>"+ products[i].name +"</h3>";
 
-        </div>
+                           newContent += "<p>Description.</p><br/>";
+
+                           newContent += "<p class='card-text'><a class='add-to-cart' href='#' data-name='"+ products[i].name +"' data-price='"+ products[i].price +"'><button class='btn btn-primary'>Köp</button></a>"+ products[i].price +" </p>";
+
+                       newContent += "</div>";
+
+                    newContent += "</div>";
+
+                newContent +=  "</div>";
+            }
+
+            document.getElementById("product").innerHTML = newContent;
+
+        },
+        failure: function (errMsg) {
+            console.log(errMsg);
+        }
+    });
+});
+    </script>
+
          
     </body>
      
