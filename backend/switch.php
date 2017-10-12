@@ -29,6 +29,18 @@ if(isset($_POST['data'])){
 			require 'switchBreakout/list.php';
 
 			break;
+            
+        case 'email':
+
+			require 'switchBreakout/email.php';
+
+			break;
+            
+        case 'search':
+
+			require 'switchBreakout/search.php';
+
+			break;
 		
 		default:
 			Echo "Invalid command \n";
