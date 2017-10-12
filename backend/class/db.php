@@ -11,7 +11,7 @@ class DB
 
 	public function __construct()
 	{
-		require '../../logins.php';
+		require '../../../logins.php';
 		$database = "webbshop_boxshop";
 
 		$this->link = new PDO(
