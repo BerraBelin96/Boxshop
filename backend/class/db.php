@@ -47,11 +47,31 @@ class DB
 		return $result;
 	}
 
+	public function listJoined($table)
+	{
+		$stmt = $this->link->query("SELECT {$table}.`id`, {$table}.`price`, {$table}.`name`, {$table}.`ammount`, 
+			type.`type`, type.`typeid`,
+			product_description.`short_desc` 
+			FROM {$table}
+			JOIN type ON {$table}.type = type.typeid
+			JOIN product_description ON {$table}.description = product_description.id_desc");
+		$result;
+		while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+		{		
+			 $result[] = $row;
+		}
+
+		return $result;
+	}
+
 	public function listByColumn($table,$joinTable,$column,$specifier)
 	{
-		$stmt = $this->link->prepare("SELECT * 
+		$stmt = $this->link->prepare("SELECT {$table}.`id`, {$table}.`price`, {$table}.`name`, {$table}.`ammount`, 
+			{$joinTable}.`type`, {$joinTable}.`typeid`,
+			product_description.`short_desc`
 			FROM {$table}
 			JOIN {$joinTable} ON {$table}.type = {$joinTable}.typeid
+			JOIN product_description ON {$table}.description = product_description.id_desc
 			WHERE {$table}.{$column} = :specifier");
 		$specifier = filter_var($specifier, FILTER_SANITIZE_NUMBER_INT);
 		$stmt->bindParam(':specifier', $specifier, PDO::PARAM_INT);
@@ -69,10 +89,12 @@ class DB
 
 	public function listByColumnWithDescription($table,$joinTable,$column,$specifier)
 	{
-		$stmt = $this->link->prepare("SELECT * 
+		$stmt = $this->link->prepare("SELECT {$table}.`id`, {$table}.`price`, {$table}.`name`, {$table}.`ammount`, 
+			{$joinTable}.`type`, {$joinTable}.`typeid`,
+			product_description.`short_desc`, product_description.`long_desc`
 			FROM {$table}
 			JOIN {$joinTable} ON {$table}.type = {$joinTable}.typeid
-			JOIN description ON {$table}.description = description.descriptionid
+			JOIN product_description ON {$table}.description = product_description.id_desc
 			WHERE {$table}.{$column} = :specifier");
 		$specifier = filter_var($specifier, FILTER_SANITIZE_NUMBER_INT);
 		$stmt->bindParam(':specifier', $specifier, PDO::PARAM_INT);

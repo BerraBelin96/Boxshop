@@ -1,7 +1,7 @@
 <?php
 switch ($splitColumn) {
 	case 'all':
-		$dbList = $db->list("products");
+		$dbList = $db->listJoined("products");
 		echo json_encode($dbList);
 		break;
 
