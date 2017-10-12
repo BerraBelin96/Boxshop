@@ -1,0 +1,90 @@
+/* Style the links inside the sidenav */
+#mySidenav a {
+    position: fixed; /* Position them relative to the browser window */
+    left: -80px; /* Position them outside of the screen */
+    transition: 0.3s; /* Add transition on hover */
+    padding: 10px; /* 15px padding */
+    width: 120px; /* Set a specific width */
+    text-decoration: none; /* Remove underline */
+    font-size: 20px; /* Increase font size */
+    color: white; /* White text color */
+    border-radius: 0 5px 5px 0; /* Rounded corners on the top right and bottom right side */
+    margin-top: 18%;
+    z-index: 1;
+}
+
+#mySidenav a:hover {
+    left: 0; /* On mouse-over, make the elements appear as they should */
+}
+
+/* The about link: 20px from the top with a green background */
+#about {
+    top: 20px;
+    background-color: #555;
+}
+
+#blog {
+    top: 80px;
+    background-color: #555; /* Blue */
+}
+
+#projects {
+    top: 140px;
+    background-color: #555; /* Red */
+}
+
+#contact {
+    top: 200px;
+    background-color: #555 /* Light Black */
+}
+
+body{
+    font-size: 1.5em;
+}
+
+.card-text {
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 450px) {
+    
+    #mySidenav a {
+        width: 0px;
+    }
+
+  
+   
+}
+
+@media only screen and (max-height: 400px) {
+
+
+    #mySidenav a {
+        width: 0px;
+    }
+
+
+}
+
+.search[type=text] {
+    width: 1%;
+    margin-top: 0.5em;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url("../images/if_icon-111-search_314478.svg");
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.search[type=text]:focus {
+    width: 10%;
+}

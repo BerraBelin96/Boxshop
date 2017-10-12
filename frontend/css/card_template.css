@@ -1,0 +1,11 @@
+body{
+    font-size: 1.5em;
+}
+
+.card-text {
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}

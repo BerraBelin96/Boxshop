@@ -1,0 +1,153 @@
+/* The side navigation menu */
+.shop {
+    height: 100%; /* 100% Full-height */
+    width: 20%; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    right: 0;
+    background-color: #555; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0s; /* 0.5 second transition effect to slide in the shop */
+    color: white;
+}
+
+/* The navigation menu links */
+.shop a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.shop a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+body{
+
+}
+
+#header{
+    padding: 0px;
+    margin-top: -10px;
+    z-index: -1;
+    max-width: 100%;
+    height: auto;
+}
+
+#cart{
+    position: fixed;
+    z-index: 2;
+    right: 0px;
+    font-size: 36px;
+    padding-right: 10px;
+    padding-top: 7px
+}
+
+#closecart{
+    right: 0px;
+    font-size: 36px;
+    position: absolute;
+    padding-right: 10px;
+}
+
+/* Position and style the close button (top right corner) */
+.shop .closebtn {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    right: 0px;
+    font-size: 36px;
+    padding-right: 10px;
+}
+
+.navbar-fixed {
+    top: 0;
+    z-index: 1;
+  	position: fixed;
+    width: 100%;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-right 1s;
+    padding: 50px;
+    margin-right: 20%;
+}
+
+.status {
+    color: white;
+    margin-left: 1em;
+}
+
+.shop-item {
+    color: white;
+    margin-left: 2em;
+}
+
+.cartBuy {
+    margin-left: 2em;
+}
+
+.fixed {
+    position:fixed;
+    width: 100%;
+    top:0;
+    z-index: 1;
+}
+
+.item-count {
+    width: 100px;
+}
+
+.cart-count {
+    padding: 8px 8px 8px 32px;
+}
+
+#showCart {
+    color: white;
+}
+
+
+/* On smaller screens, where height is less than 450px, change the style of the shop (less padding and a smaller font size) */
+@media only screen and (max-height: 450px) {
+    .shop {padding-top: 60px;}
+    .shop a {font-size: 18px;}
+    
+
+
+}
+
+@media only screen and (max-width: 450px) {
+    .shop a {
+        font-size: 18px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        padding-left: 8px;
+    }
+
+   
+
+}
+
+@media only screen and (max-width: 768px) {
+    .col-sm-4 {
+        width: 50%;
+        float: left;
+        
+
+    }
+
+   }
+
+@media only screen and (max-width: 450px) {
+    .col-sm-4 {
+        width: 100%;
+        margin: auto;
+    }
+}
+

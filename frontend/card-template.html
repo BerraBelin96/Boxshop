@@ -1,0 +1,86 @@
+ <html>
+     
+     <head>
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/card_template.css">
+         <link rel="stylesheet" type="text/css" href="css/modal.css">
+
+     </head>
+     
+     <body>
+     
+         <div class="col-xs-11 col-sm-4 col-md-4 col-lg-2">
+
+            <div class="thumbnail">
+
+              <img src="http://via.placeholder.com/300x250" alt="Card image cap">
+
+                <div class="caption">
+
+                    <h3>Product title</h3>
+
+                    <p>Description.</p><br/>
+
+                    <p class="card-text"><button class="btn btn-primary add" value="*" data-value="*">Köp</button> Price :-</p>
+
+                </div>
+
+            </div>
+             
+         </div>
+         
+         <div>
+             
+             <h2>Modal Example</h2>
+
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+        </div>
+         
+    </body>
+     
+</html>

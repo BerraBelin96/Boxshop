@@ -1,0 +1,12 @@
+.carousel{
+    width: 50%;
+    margin: auto;
+}
+
+@media only screen and (max-width: 450px) {
+	.carousel {
+		width: 85%;
+		margin: auto;
+	}
+	
+}
