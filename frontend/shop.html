@@ -5,6 +5,7 @@
 <head>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -163,9 +164,9 @@
 
                 newContent +=  "<h3>"+products[i].name+"</h3>";
 
-                newContent += "<p>Description.</p><br/>";
+                newContent += "<p>"+products[i].short_desc+"</p><br/>";
 
-                newContent += "<p class='card-text'><a class='add-to-cart' href='#' data-name='"+products[i].name+"' data-price='"+products[i].price+"'><button class='btn btn-primary'>Köp</button></a>"+products[i].price+"</p>";
+                newContent += "<p class='card-text'><a class='add-to-cart' href='#' data-name='"+products[i].name+"' data-price='"+products[i].price+"'><button class='btn btn-primary'>Köp</button></a> "+ products[i].price+" kr</p>";
 
                 newContent += "</div>";
 
@@ -243,7 +244,7 @@
             <li>???????</li>
         </ul>
         <div class="cart-count" style="color: white">You have <span style="color: white" id="count-cart">X</span> items in your cart</div>
-        <div class="cart-count" style="color: white">Total Cart:$<span style="color: white" id="total-cart"></span></div>
+        <div class="cart-count" style="color: white">Total Cart: <span style="color: white" id="total-cart"></span> kr</div>
 
     </div>
 
@@ -351,10 +352,10 @@
             +cartArray[i].name
             +"' value='"+cartArray[i].count+"'> "
             +"<div class='input-group-btn'> "
-            +" <button type='button' class='plus-item btn btn-default' data-name='"
-            +cartArray[i].name+"'>+</button>"
             +" <button type='button' class='subtract-item btn btn-default' data-name='"
             +cartArray[i].name+"'>-</button>"
+            +" <button type='button' class='plus-item btn btn-default' data-name='"
+            +cartArray[i].name+"'>+</button>"
             +" <button type='button' class='delete-item btn btn-default' data-name='"
             +cartArray[i].name+"'>&times;</button>"
             +"</div>"
