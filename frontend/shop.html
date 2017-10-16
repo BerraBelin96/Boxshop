@@ -147,8 +147,11 @@
         type: "POST",
         url: "../backend/switch.php",
         data: {
-            data: JSON.stringify(command)
-        },
+           data : JSON.stringify([{
+               comand: "list",
+               action: "all"
+           }])
+       },
         success: function (responseText) {
             console.log(responseText);
             products = responseText;
@@ -349,7 +352,7 @@
             +" &times; "+cartArray[i].price
             +" = "+cartArray[i].total
             +"<div class='input-group'>"
-            +" <input class='item-count form-control' type='text' data-id='"
+            +" <input class='item-count form-control' type='number' data-id='"
             +cartArray[i].id+"' data-name='"
             +cartArray[i].name
             +"' value='"+cartArray[i].count+"'> "
