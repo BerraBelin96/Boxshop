@@ -349,6 +349,10 @@
             +cartArray[i].name
             +"<div class='input-group col-md-6'>"
             +" <input class='item-count form-control' type='text' data-id='"
+            +" &times; "+cartArray[i].price
+            +" = "+cartArray[i].total
+            +"<div class='input-group'>"
+            +" <input class='item-count form-control' type='number' data-id='"
             +cartArray[i].id+"' data-name='"
             +cartArray[i].name
             +"' value='"+cartArray[i].count+"'> "
@@ -395,10 +399,10 @@
     });
 
     $("#show-cart").on("change", ".item-count", function(event){
-        var name = $(this).attr("data-name");
+       
         var count = Number($(this).val());
         var id = $(this).attr("data-id");
-        shoppingCart.setCountForItem(name, count, id);
+        shoppingCart.setCountForItem( count, id);
         displayCart();
     });
 
