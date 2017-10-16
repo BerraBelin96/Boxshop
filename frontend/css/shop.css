@@ -89,6 +89,10 @@ body{
     margin-left: 2em;
 }
 
+.total1{
+    float: right;
+}
+
 .cartBuy {
     margin-left: 2em;
 }
