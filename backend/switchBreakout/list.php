@@ -1,13 +1,18 @@
 <?php
-switch ($splitColumn) {
+if(isset($data[0]->specifier)){
+		$dataSpecifier = $data[0]->specifier;
+		$dataSpecifier = filter_var($dataSpecifier, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
+	}
+
+switch ($dataAction) {
 	case 'all':
 		$dbList = $db->listJoined("products");
 		echo json_encode($dbList);
 		break;
 
 	case 'type':
-		if(!empty($splitSpecifier) && isset($splitSpecifier)){
-			$dbList = $db->listBycolumn("products","type",$splitColumn,$splitSpecifier);
+		if(!empty($dataSpecifier) && isset($dataSpecifier)){
+			$dbList = $db->listBycolumn("products","type","type",$dataSpecifier);
 			echo json_encode($dbList);
 		}
 		else{
@@ -16,8 +21,8 @@ switch ($splitColumn) {
 		break;
 
 	case 'id':
-		if(!empty($splitSpecifier) && isset($splitSpecifier)){
-			$dbList = $db->listBycolumn("products","type",$splitColumn,$splitSpecifier);
+		if(!empty($dataSpecifier) && isset($dataSpecifier)){
+			$dbList = $db->listBycolumn("products","type","id",$dataSpecifier);
 			echo json_encode($dbList);
 		}
 		else{
@@ -26,8 +31,8 @@ switch ($splitColumn) {
 		break;
 
 	case 'idWDescription':
-		if(!empty($splitSpecifier) && isset($splitSpecifier)){
-			$dbList = $db->listByColumnWithDescription("products","type","id",$splitSpecifier);
+		if(!empty($dataSpecifier) && isset($dataSpecifier)){
+			$dbList = $db->listByColumnWithDescription("products","type","id",$dataSpecifier);
 			echo json_encode($dbList);
 		}
 		else{
@@ -36,7 +41,7 @@ switch ($splitColumn) {
 		break;
 
 	default:
-		Echo "Invalid column type \n";
+		Echo "Invalid action type \n";
 		break;
 }
 ?>

@@ -5,25 +5,15 @@ $db = new DB();
 header('Content-type:application/json;charset=utf-8');
 
 if(isset($_POST['data'])){
-	//$data = filter_input(INPUT_POST, "data", FILTER_SANITIZE_SPECIAL_CHARS);
 	$data = json_decode($_POST['data']);
-	$splits = explode("//", $data);
+	
+	$dataComand = $data[0]->comand;
+	$dataComand = filter_var($dataComand, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
 
-	$splitComand = $splits[0];
-	$splitComand = trim($splitComand);
+	$dataAction = $data[0]->action;
+	$dataAction = filter_var($dataAction, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
 
-	$splitColumn = "";
-	if(isset($splits[1])){
-		$splitColumn = $splits[1];
-		$splitColumn = trim($splitColumn);
-	}
-
-	if(isset($splits[2])){
-		$splitSpecifier = $splits[2];
-		$splitSpecifier = trim($splitSpecifier);
-	}
-
-	switch ($splitComand) {
+	switch ($dataComand) {
 		case 'list':
 
 			require 'switchBreakout/list.php';
@@ -43,16 +33,13 @@ if(isset($_POST['data'])){
 			break;
 		
 		default:
-			Echo "Invalid command \n";
+			echo "Invalid command \n";
 			break;
 	}
-
-if(!isset($splits[1])){
-	echo "Column not set \n";
-}
 
 }
 else{
 	echo "Invalid syntax";
 }
 ?>
+
