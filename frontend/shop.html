@@ -135,20 +135,20 @@
 
         <script>
     var products;
-    var command;
 //$("#submit").click(function (e) {
     $(document).ready(function () {
 
     //e.preventDefault();
 
-               command = "list//all";
-
     $.ajax({
         type: "POST",
         url: "../backend/switch.php",
         data: {
-            data: JSON.stringify(command)
-        },
+           data : JSON.stringify([{
+               comand: "list",
+               action: "all"
+           }])
+       },
         success: function (responseText) {
             console.log(responseText);
             products = responseText;
@@ -344,11 +344,10 @@
         var output = "";
 
         for (var i in cartArray) {
-            output += " <div class='row'> <div class='col-lg-10'>"
+            output += " <div class='row'> <div class='col-md-10'>"
+            +"<div class='row'>"
             +cartArray[i].name
-            +" &times; "+cartArray[i].price
-            +" = "+cartArray[i].total
-            +"<div class='input-group'>"
+            +"<div class='input-group col-md-6'>"
             +" <input class='item-count form-control' type='text' data-id='"
             +cartArray[i].id+"' data-name='"
             +cartArray[i].name
@@ -361,7 +360,14 @@
             +" <button type='button' class='delete-item btn btn-default' data-id='"
             +cartArray[i].id+"'>&times;</button>"
             +"</div>"
-            +" </div> </div> </div>";
+            +"</div>" 
+            +"<div>"
+            +" &times; "+cartArray[i].price
+            +" = "+cartArray[i].total
+            +"</div>" 
+            +"</div>"
+            +"</div>" 
+            +"</div>";
         }
 
         $("#show-cart").html(output);
