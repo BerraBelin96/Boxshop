@@ -389,10 +389,10 @@
     });
 
     $("#show-cart").on("change", ".item-count", function(event){
-        var name = $(this).attr("data-name");
+       
         var count = Number($(this).val());
         var id = $(this).attr("data-id");
-        shoppingCart.setCountForItem(name, count, id);
+        shoppingCart.setCountForItem( count, id);
         displayCart();
     });
 
