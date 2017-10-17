@@ -49,7 +49,7 @@ class DB
 
 	public function listJoined($table)
 	{
-		$stmt = $this->link->query("SELECT {$table}.`id`, {$table}.`price`, {$table}.`name`, {$table}.`ammount`, 
+		$stmt = $this->link->query("SELECT {$table}.`id`, {$table}.`price`, {$table}.`name`, {$table}.`ammount`, {$table}.`img`,
 			type.`type`, type.`typeid`,
 			product_description.`short_desc` 
 			FROM {$table}
@@ -66,7 +66,7 @@ class DB
 
 	public function listByColumn($table,$joinTable,$column,$specifier)
 	{
-		$stmt = $this->link->prepare("SELECT {$table}.`id`, {$table}.`price`, {$table}.`name`, {$table}.`ammount`, 
+		$stmt = $this->link->prepare("SELECT {$table}.`id`, {$table}.`price`, {$table}.`name`, {$table}.`ammount`, {$table}.`img`,
 			{$joinTable}.`type`, {$joinTable}.`typeid`,
 			product_description.`short_desc`
 			FROM {$table}
@@ -89,7 +89,7 @@ class DB
 
 	public function listByColumnWithDescription($table,$joinTable,$column,$specifier)
 	{
-		$stmt = $this->link->prepare("SELECT {$table}.`id`, {$table}.`price`, {$table}.`name`, {$table}.`ammount`, 
+		$stmt = $this->link->prepare("SELECT {$table}.`id`, {$table}.`price`, {$table}.`name`, {$table}.`ammount`, {$table}.`img`,
 			{$joinTable}.`type`, {$joinTable}.`typeid`,
 			product_description.`short_desc`, product_description.`long_desc`
 			FROM {$table}
