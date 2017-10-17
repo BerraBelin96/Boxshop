@@ -5,29 +5,34 @@ switch ($dataAction) {
 	case 'searchAll':
         
         
-        $testvar = "låda";
+        $testvar = "lå";
         
         
 		$dbList = $db->listJoined("products");
         //echo json_encode($dbList[0]['id']);
         
         $arrayLength = count($dbList);
-        
+
         $searchResult = array();
         $x = 0;
         while($x < $arrayLength){
-            if (in_array($testvar, $dbList[$x])) {
+            if (strpos($dbList[$x]['name'], $testvar) !==false || strpos($dbList[$x]['type'], $testvar) !==false) {
                 array_push($searchResult, $dbList[$x]);
             }
+            
             $x++;
         }
         
-        echo json_encode($searchResult);
-        
+        if (!empty($searchResult)){
+            echo json_encode($searchResult);
+        }
+        else {
+            echo json_encode("Hittade inga resultat för " . $testvar);
+        }
 		break;
         
     default:
-		Echo "Invalid column type \n";
+		echo "Invalid column type \n";
 		break;
 }
 ?>

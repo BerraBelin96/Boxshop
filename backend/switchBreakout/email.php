@@ -1,11 +1,12 @@
 <?php
 
-class receipt {
-    
-    
-    
-     public function sendReceipt(){  
+
+switch ($dataAction) {
+        
+    case 'emailreceipt':
          
+        
+        
          $email = "t4.emil.henriksson@umea.nti.se";
          $firstLastName = "John Doe";
          
@@ -33,12 +34,7 @@ class receipt {
          $headers .= 'Cc: boxshop@donotreply.com' . "\r\n";
 
          mail($to,$subject,$message,$headers);
-         
-         echo "funktion sendReceipt hämtad";
      }
-}
-
-
 
 
 
