@@ -139,6 +139,7 @@ window.onclick = function(event) {
     $(document).ready(function () {
 
 //e.preventDefault();
+var cart = localStorage.getItem("shoppingCart");
 
 $.ajax({
     type: "POST",
@@ -147,7 +148,8 @@ $.ajax({
         data : JSON.stringify([{
             comand: "list",
             action: "all"
-        }])
+        }]),
+        cart : JSON.stringify(cart)
     },
     success: function (responseText) {
         console.log(responseText);
@@ -157,7 +159,7 @@ $.ajax({
             newContent += "<div class='col-xs-11 col-sm-4 col-md-4 col-lg-2'>";
             newContent += "<div class='thumbnail'>";
 
-            newContent += "<img src='http://via.placeholder.com/300x250' alt='Card image cap'>";
+            newContent += "<img src='../"+products[i].img+"' alt='Card image cap'>";
 
             newContent += "<div class='caption'>";
 
