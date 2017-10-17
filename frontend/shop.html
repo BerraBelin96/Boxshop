@@ -139,7 +139,6 @@ window.onclick = function(event) {
     $(document).ready(function () {
 
 //e.preventDefault();
-var cart = localStorage.getItem("shoppingCart");
 
 $.ajax({
     type: "POST",
@@ -148,8 +147,7 @@ $.ajax({
         data : JSON.stringify([{
             comand: "list",
             action: "all"
-        }]),
-        cart : JSON.stringify(cart)
+        }])
     },
     success: function (responseText) {
         console.log(responseText);
@@ -191,6 +189,36 @@ $.ajax({
     failure: function (errMsg) {
         console.log(errMsg);
     }
+
+});
+
+$("#submit").click(function (e) {
+
+    e.preventDefault();
+    var cart = localStorage.getItem("shoppingCart");
+
+    $.ajax({
+
+        type: "POST",
+        url: "../backend/switch.php",
+        data: {
+
+            data : JSON.stringify([{
+                comand: "cart"
+            }]),
+            cart : JSON.stringify(cart)
+
+        },
+
+        success: function (responseText) {
+            console.log(responseText);
+        },
+
+        failure: function (errMsg) {
+            console.log(errMsg);
+        }
+
+    })
 
 });
 
@@ -300,6 +328,8 @@ $.ajax({
                         <input type="text" class="form-control modal-control" id="name">
 
                     </div>
+
+                    <input type="submit" name="submit" id="submit">
 
                 </form>
 
