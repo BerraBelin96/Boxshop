@@ -169,10 +169,14 @@ failure: function (errMsg) {
 
 });
 
-$("#submit").click(function () {
+$("#submit").click(function (event) {
+
+
+
+
 
 var cart = localStorage.getItem("shoppingCart");
-var userInfo = JSON.stringify($(form).serializeArray());
+var userInfo = JSON.stringify($("#personalInfo").serializeArray());
 
 console.log(cart, userInfo);
 
@@ -192,7 +196,6 @@ $.ajax({
 
     success: function (responseText) {
         console.log(responseText);
-        console.log(info);
     },
 
     failure: function (errMsg) {
