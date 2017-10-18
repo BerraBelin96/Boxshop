@@ -196,6 +196,8 @@ $("#submit").click(function (e) {
 
     e.preventDefault();
     var cart = localStorage.getItem("shoppingCart");
+    var name_info = $("name").val();
+    var info = [{"namn": 123}];
 
     $.ajax({
 
@@ -212,6 +214,7 @@ $("#submit").click(function (e) {
 
         success: function (responseText) {
             console.log(responseText);
+            console.log(info);
         },
 
         failure: function (errMsg) {
@@ -287,7 +290,7 @@ $("#submit").click(function (e) {
 
                 <span class="close">&times;</span>
 
-                <form>
+                <form action="" method="post">
 
                     <div class="form-group">
 
