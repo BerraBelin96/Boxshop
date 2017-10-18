@@ -4,20 +4,20 @@
 
 <head>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/slideshow.css">
-    <link rel="stylesheet" type="text/css" href="css/shop.css">
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <link rel="stylesheet" type="text/css" href="css/modal.css">
-    <script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/slideshow.css">
+<link rel="stylesheet" type="text/css" href="css/shop.css">
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<link rel="stylesheet" type="text/css" href="css/modal.css">
+<script>
 
 
 
-        $(document).ready(function() {
+    $(document).ready(function() {
 // grab the initial top offset of the navigation 
 var stickyNavTop = $('#navbar').offset().top;
 
@@ -28,78 +28,52 @@ var scrollTop = $(window).scrollTop(); // our current vertical position from the
 // if we've scrolled more than the navigation, change its position to fixed to stick to top,
 // otherwise change it back to relative
 if (scrollTop > stickyNavTop) { 
-    $('#navbar').addClass('fixed');
-    document.getElementById("cart").style.zIndex = "2";
-    document.getElementById("main").style.marginTop = "70px";
+$('#navbar').addClass('fixed');
+document.getElementById("cart").style.zIndex = "2";
+document.getElementById("main").style.marginTop = "70px";
 } else {
-    $('#navbar').removeClass('fixed'); 
-    document.getElementById("cart").style.zIndex = "1";
-    document.getElementById("main").style.paddingTop = "0px";
+$('#navbar').removeClass('fixed'); 
+document.getElementById("cart").style.zIndex = "1";
+document.getElementById("main").style.paddingTop = "0px";
 }
 };
 
 stickyNav();
 // and run it again every time you scroll
 $(window).scroll(function() {
-    stickyNav();
+stickyNav();
 });
 });
 
-        /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-        function openNav() {
-            document.getElementById("myShop").style.width = "20%";
-            document.getElementById("main").style.marginRight = "20%";
-            document.getElementById("myShop").style.zIndex = "3";
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+    function openNav() {
+        document.getElementById("myShop").style.width = "20%";
+        document.getElementById("main").style.marginRight = "20%";
+        document.getElementById("myShop").style.zIndex = "3";
 
 
 
-        }
+    }
 
-        /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-        function closeNav() {
-            document.getElementById("myShop").style.width = "0";
-            document.getElementById("main").style.marginRight = "0";
-
-
-
-        }
-
-        $(document).ready(function() {
-
-            document.getElementById("myShop").style.width = "0";
-            document.getElementById("main").style.marginRight = "0";
-
-            document.getElementById("myShop").style.transition = "1s";
-
-        });
-
-/* $(document).ready(function(){
-
-var result = 0;
-
-$(".add").click(function() {
-
-$(".status").replaceWith("<h3 class='status'>Din varukorg:</h3>");
-
-var datavalue = this.getAttribute("data-value");
-
-datavalueint = parseInt(datavalue);
-
-result = (result + datavalueint);
-
-$("#shopCart").append("<div class='shop-item'>"+ $(this).val() + "<p>"+ datavalue + "</p></div>");
-
-alert(result);
-
-});
-
-$("")
+    /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+    function closeNav() {
+        document.getElementById("myShop").style.width = "0";
+        document.getElementById("main").style.marginRight = "0";
 
 
 
-}); */
+    }
 
-$(document).ready(function() {
+    $(document).ready(function() {
+
+        document.getElementById("myShop").style.width = "0";
+        document.getElementById("main").style.marginRight = "0";
+
+        document.getElementById("myShop").style.transition = "1s";
+
+    });
+
+    $(document).ready(function() {
 
 // Get the modal
 var modal = document.getElementById('myModal');
@@ -112,19 +86,19 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
-    modal.style.display = "block";
+modal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-    modal.style.display = "none";
+modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+if (event.target == modal) {
+    modal.style.display = "none";
+}
 }
 
 });
@@ -134,94 +108,98 @@ window.onclick = function(event) {
 </script>
 
 <script>
-    var products;
+
+
+
+var products;
 //$("#submit").click(function (e) {
-    $(document).ready(function () {
+$(document).ready(function () {
 
 //e.preventDefault();
 
 $.ajax({
+type: "POST",
+url: "../backend/switch.php",
+data: {
+    data : JSON.stringify([{
+        comand: "list",
+        action: "all"
+    }])
+},
+success: function (responseText) {
+    console.log(responseText);
+    products = responseText;
+    var newContent = '';
+    for (var i = 0; i < products.length ; i++) {
+        newContent += "<div class='col-xs-11 col-sm-4 col-md-4 col-lg-2'>";
+        newContent += "<div class='thumbnail'>";
+
+        newContent += "<img src='../"+products[i].img+"' alt='Card image cap'>";
+
+        newContent += "<div class='caption'>";
+
+        newContent +=  "<h3>"+products[i].name+"</h3>";
+
+        newContent += "<p>"+products[i].short_desc+"</p><br/>";
+
+        newContent += "<p class='card-text'><a class='add-to-cart' href='#' data-name='"+products[i].name+"' data-price='"+products[i].price+"' data-id='"+products[i].id+"'><button class='btn btn-primary'>Köp</button></a> "+ products[i].price+" kr</p>";
+
+        newContent += "</div>";
+
+        newContent += "</div>";
+
+        newContent +=  "</div>";
+    }
+
+    document.getElementById("product").innerHTML = newContent;
+
+    $(".add-to-cart").click(function(event){
+        event.preventDefault();
+        var name = $(this).attr("data-name");
+        var price = Number($(this).attr("data-price"));
+        var id = $(this).attr("data-id");
+
+        shoppingCart.addItemToCart(name, price, 1, id);
+        displayCart();
+    });
+},
+failure: function (errMsg) {
+    console.log(errMsg);
+}
+
+});
+
+$("#submit").click(function () {
+
+var cart = localStorage.getItem("shoppingCart");
+var userInfo = JSON.stringify($(form).serializeArray());
+
+console.log(cart, userInfo);
+
+
+$.ajax({
+
     type: "POST",
     url: "../backend/switch.php",
     data: {
+
         data : JSON.stringify([{
-            comand: "list",
-            action: "all"
-        }])
+            comand: "cart"
+        }]),
+        cart : JSON.stringify(cart)
+
     },
+
     success: function (responseText) {
         console.log(responseText);
-        products = responseText;
-        var newContent = '';
-        for (var i = 0; i < products.length ; i++) {
-            newContent += "<div class='col-xs-11 col-sm-4 col-md-4 col-lg-2'>";
-            newContent += "<div class='thumbnail'>";
-
-            newContent += "<img src='../"+products[i].img+"' alt='Card image cap'>";
-
-            newContent += "<div class='caption'>";
-
-            newContent +=  "<h3>"+products[i].name+"</h3>";
-
-            newContent += "<p>"+products[i].short_desc+"</p><br/>";
-
-            newContent += "<p class='card-text'><a class='add-to-cart' href='#' data-name='"+products[i].name+"' data-price='"+products[i].price+"' data-id='"+products[i].id+"'><button class='btn btn-primary'>Köp</button></a> "+ products[i].price+" kr</p>";
-
-            newContent += "</div>";
-
-            newContent += "</div>";
-
-            newContent +=  "</div>";
-        }
-
-        document.getElementById("product").innerHTML = newContent;
-
-        $(".add-to-cart").click(function(event){
-            event.preventDefault();
-            var name = $(this).attr("data-name");
-            var price = Number($(this).attr("data-price"));
-            var id = $(this).attr("data-id");
-
-            shoppingCart.addItemToCart(name, price, 1, id);
-            displayCart();
-        });
+        console.log(info);
     },
+
     failure: function (errMsg) {
         console.log(errMsg);
     }
 
-});
-
-$("#submit").click(function (e) {
-
-    e.preventDefault();
-    var cart = localStorage.getItem("shoppingCart");
-    var name_info = $("name").val();
-    var info = [{"namn": 123}];
-
-    $.ajax({
-
-        type: "POST",
-        url: "../backend/switch.php",
-        data: {
-
-            data : JSON.stringify([{
-                comand: "cart"
-            }]),
-            cart : JSON.stringify(cart)
-
-        },
-
-        success: function (responseText) {
-            console.log(responseText);
-            console.log(info);
-        },
-
-        failure: function (errMsg) {
-            console.log(errMsg);
-        }
-
-    })
+})
 
 });
 
@@ -234,213 +212,213 @@ $("#submit").click(function (e) {
 
 <body>
 
-    <header>
-        <img id="cart" onclick="openNav()" src="images/ic_shopping_cart_black_48px.svg">
+<header>
+    <img id="cart" onclick="openNav()" src="images/ic_shopping_cart_black_48px.svg">
 
-        <img id="header" src="http://via.placeholder.com/1920x300">
+    <img id="header" src="http://via.placeholder.com/1920x300">
 
-    </header>
+</header>
 
-    <nav class="navbar navbar-default" id="navbar">
+<nav class="navbar navbar-default" id="navbar">
 
-        <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse">
 
-            <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav">
 
-                <li><a href="#">Placeholder</a></li>
-                <li><a href="#">Placeholder</a></li>
-                <li><a href="#">Placeholder</a></li>
-                <li><a href="#">Placeholder</a></li>
+            <li><a href="#">Placeholder</a></li>
+            <li><a href="#">Placeholder</a></li>
+            <li><a href="#">Placeholder</a></li>
+            <li><a href="#">Placeholder</a></li>
 
-            </ul>
+        </ul>
 
-            <form clas="navbar-form">
+        <form clas="navbar-form">
+
+            <div class="form-group">
+
+                <input type="text" class="form-control search" name="search" placeholder="Search..">
+
+            </div>
+
+        </form>
+
+    </div>
+
+</nav>
+
+<div id="myShop" class="shop">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><img id="closecart" src="images/ic_remove_shopping_cart_white_48px.svg"></a>
+
+    <div id="shopCart">
+
+        <ul id="show-cart">
+            <li>???????</li>
+        </ul>
+        <div class="cart-count" style="color: white">You have <span style="color: white" id="count-cart">X</span> items in your cart</div>
+        <div class="cart-count" style="color: white">Total Cart: <span style="color: white" id="total-cart"></span> kr</div>
+
+    </div>
+
+    <button id="myBtn" class="btn btn-primary cartBuy">Köp</button>
+
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+
+            <span class="close">&times;</span>
+
+            <form action="#" method="post" id="personalInfo">
 
                 <div class="form-group">
 
-                    <input type="text" class="form-control search" name="search" placeholder="Search..">
+                    <label for="name">Förnamn:</label>
+
+                    <input type="text" name="firstname" class="form-control modal-control" id="name">
 
                 </div>
+
+                <div class="form-group">
+
+                    <label for="name">Efternamn:</label>
+
+                    <input type="text" name="surname" class="form-control modal-control" id="name">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="name">Adress:</label>
+
+                    <input type="text" name="address" class="form-control modal-control" id="name">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="name">Postnummer:</label>
+
+                    <input type="text" name="zip-code" class="form-control modal-control" id="name">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="name">Stad:</label>
+
+                    <input type="text" name="city" class="form-control modal-control" id="name">
+
+                </div>
+
+                <input type="submit" name="submit" id="submit">
 
             </form>
 
         </div>
 
-    </nav>
+    </div>
 
-    <div id="myShop" class="shop">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><img id="closecart" src="images/ic_remove_shopping_cart_white_48px.svg"></a>
+</div>
 
-        <div id="shopCart">
+<div id="mySidenav" class="sidenav">
+    <a href="index.html" id="about">Home</a>
+    <a href="shop.html" id="blog">Shop</a>
+    <a href="#" id="projects">About</a>
+    <a href="#" id="contact">Contact</a>
+</div>
 
-            <ul id="show-cart">
-                <li>???????</li>
-            </ul>
-            <div class="cart-count" style="color: white">You have <span style="color: white" id="count-cart">X</span> items in your cart</div>
-            <div class="cart-count" style="color: white">Total Cart: <span style="color: white" id="total-cart"></span> kr</div>
+<!-- Use any element to open the sidenav -->
 
-        </div>
+<div class="container-fluid" id="main">
 
-        <button id="myBtn" class="btn btn-primary cartBuy">Köp</button>
+    <div class="row" id="product">
 
-        <div id="myModal" class="modal">
 
-            <!-- Modal content -->
-            <div class="modal-content">
-
-                <span class="close">&times;</span>
-
-                <form action="" method="post">
-
-                    <div class="form-group">
-
-                        <label for="name">Förnamn:</label>
-
-                        <input type="text" name="firstname" class="form-control modal-control" id="name">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="name">Efternamn:</label>
-
-                        <input type="text" name="surname" class="form-control modal-control" id="name">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="name">Adress:</label>
-
-                        <input type="text" name="address" class="form-control modal-control" id="name">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="name">Postnummer:</label>
-
-                        <input type="text" name="zip-code" class="form-control modal-control" id="name">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="name">Stad:</label>
-
-                        <input type="text" name="city" class="form-control modal-control" id="name">
-
-                    </div>
-
-                    <input type="submit" name="submit" id="submit">
-
-                </form>
-
-            </div>
-
-        </div>
 
     </div>
 
-    <div id="mySidenav" class="sidenav">
-        <a href="index.html" id="about">Home</a>
-        <a href="shop.html" id="blog">Shop</a>
-        <a href="#" id="projects">About</a>
-        <a href="#" id="contact">Contact</a>
-    </div>
+</div>
 
-    <!-- Use any element to open the sidenav -->
+<script src="js/shoppingCart.js"></script>
+<script src="js/shoppingCarts.js"></script>
 
-    <div class="container-fluid" id="main">
-
-        <div class="row" id="product">
+<script>
 
 
 
-        </div>
+    $("#clear-cart").click(function(event){
+        shoppingCart.clearCart();
+        displayCart();
+    });
 
-    </div>
+    function displayCart() {
+        var cartArray = shoppingCart.listCart();
+        console.log(cartArray);
+        var output = "";
 
-    <script src="js/shoppingCart.js"></script>
-    <script src="js/shoppingCarts.js"></script>
-
-    <script>
-
-
-
-        $("#clear-cart").click(function(event){
-            shoppingCart.clearCart();
-            displayCart();
-        });
-
-        function displayCart() {
-            var cartArray = shoppingCart.listCart();
-            console.log(cartArray);
-            var output = "";
-
-            for (var i in cartArray) {
-                output += " <div class='row'> <div class='col-md-10'>"
-                +"<div class='row'>"
-                +cartArray[i].name
-                +"<div class='input-group col-md-7'>"
-                +" <input class='item-count form-control' type='number' data-id='"
-                +cartArray[i].id+"' data-name='"
-                +cartArray[i].name
-                +"' value='"+cartArray[i].count+"'> "
-                +"<div class='input-group-btn'> "
-                +" <button type='button' class='subtract-item btn btn-default' data-id='"
-                +cartArray[i].id+"'>-</button>"
-                +" <button type='button' class='plus-item btn btn-default' data-id='"
-                +cartArray[i].id+"'>+</button>"
-                +" <button type='button' class='delete-item btn btn-default' data-id='"
-                +cartArray[i].id+"'>&times;</button>"
-                +"</div>"
-                +"</div>" 
-                +"<div class='total1'>"
-                +" &times; "+cartArray[i].price
-                +" = "+cartArray[i].total
-                +"</div>" 
-                +"</div>"
-                +"</div>" 
-                +"</div>";
-            }
-
-            $("#show-cart").html(output);
-            $("#count-cart").html( shoppingCart.countCart() );
-            $("#total-cart").html( shoppingCart.totalCart() );
+        for (var i in cartArray) {
+            output += " <div class='row'> <div class='col-md-10'>"
+            +"<div class='row'>"
+            +cartArray[i].name
+            +"<div class='input-group col-md-7'>"
+            +" <input class='item-count form-control' type='number' data-id='"
+            +cartArray[i].id+"' data-name='"
+            +cartArray[i].name
+            +"' value='"+cartArray[i].count+"'> "
+            +"<div class='input-group-btn'> "
+            +" <button type='button' class='subtract-item btn btn-default' data-id='"
+            +cartArray[i].id+"'>-</button>"
+            +" <button type='button' class='plus-item btn btn-default' data-id='"
+            +cartArray[i].id+"'>+</button>"
+            +" <button type='button' class='delete-item btn btn-default' data-id='"
+            +cartArray[i].id+"'>&times;</button>"
+            +"</div>"
+            +"</div>" 
+            +"<div class='total1'>"
+            +" &times; "+cartArray[i].price
+            +" = "+cartArray[i].total
+            +"</div>" 
+            +"</div>"
+            +"</div>" 
+            +"</div>";
         }
 
-        $("#show-cart").on("click", ".delete-item", function(event){
-            var id = $(this).attr("data-id");
-            shoppingCart.removeItemFromCartAll(id);
-            displayCart();
-        });
+        $("#show-cart").html(output);
+        $("#count-cart").html( shoppingCart.countCart() );
+        $("#total-cart").html( shoppingCart.totalCart() );
+    }
 
-        $("#show-cart").on("click", ".subtract-item", function(event){
-            var id = $(this).attr("data-id");
-            shoppingCart.removeItemFromCart(id);
-            displayCart();
-        });
-
-        $("#show-cart").on("click", ".plus-item", function(event){
-            var name = $(this).attr("data-name");
-            var id = $(this).attr("data-id");
-            shoppingCart.addItemToCart(name, 0, 1, id);
-            displayCart();
-        });
-
-        $("#show-cart").on("change", ".item-count", function(event){
-
-            var count = Number($(this).val());
-            var id = $(this).attr("data-id");
-            shoppingCart.setCountForItem( count, id);
-            displayCart();
-        });
-
-
+    $("#show-cart").on("click", ".delete-item", function(event){
+        var id = $(this).attr("data-id");
+        shoppingCart.removeItemFromCartAll(id);
         displayCart();
+    });
 
-    </script>
+    $("#show-cart").on("click", ".subtract-item", function(event){
+        var id = $(this).attr("data-id");
+        shoppingCart.removeItemFromCart(id);
+        displayCart();
+    });
+
+    $("#show-cart").on("click", ".plus-item", function(event){
+        var name = $(this).attr("data-name");
+        var id = $(this).attr("data-id");
+        shoppingCart.addItemToCart(name, 0, 1, id);
+        displayCart();
+    });
+
+    $("#show-cart").on("change", ".item-count", function(event){
+
+        var count = Number($(this).val());
+        var id = $(this).attr("data-id");
+        shoppingCart.setCountForItem( count, id);
+        displayCart();
+    });
+
+
+    displayCart();
+
+</script>
 
 </body>
 
