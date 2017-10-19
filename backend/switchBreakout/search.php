@@ -2,11 +2,18 @@
 //$search = "låda";
 
 switch ($dataAction) {
+        
+        
+
+        
+        
 	case 'searchAll':
         
-        
-        $testvar = "lå";
-        
+    if(isset($data[0]->search)){
+		$dataSearch = $data[0]->search;
+		$dataSearch = filter_var($dataSearch, FILTER_SANITIZE_STRIPPED, FILTER_FLAG_STRIP_LOW  );
+	}
+    
         
 		$dbList = $db->listJoined("products");
         //echo json_encode($dbList[0]['id']);
@@ -16,7 +23,7 @@ switch ($dataAction) {
         $searchResult = array();
         $x = 0;
         while($x < $arrayLength){
-            if (strpos($dbList[$x]['name'], $testvar) !==false || strpos($dbList[$x]['type'], $testvar) !==false) {
+            if (strpos($dbList[$x]['name'], $dataSearch) !==false || strpos($dbList[$x]['type'], $dataSearch) !==false) {
                 array_push($searchResult, $dbList[$x]);
             }
             
@@ -27,7 +34,7 @@ switch ($dataAction) {
             echo json_encode($searchResult);
         }
         else {
-            echo json_encode("Hittade inga resultat för " . $testvar);
+            echo json_encode("Hittade inga resultat för " . $dataSearch);
         }
 		break;
         
