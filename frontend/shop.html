@@ -173,9 +173,14 @@ $("#submit").click(function (event) {
 
 
 var cart = localStorage.getItem("shoppingCart");
-var userInfo = JSON.stringify($("#personalInfo").serializeArray());
+var userInfo = $("#personalInfo").serializeArray();
+var userValue = {};
+$.each(userInfo, function(i, field) {
+    userValue[field.name] = field.value;
+});
+JSON.stringify(userValue);
 
-console.log(cart, userInfo);
+console.log(cart, userValue);
 
 
 $.ajax({
@@ -268,7 +273,7 @@ $.ajax({
 
             <span class="close">&times;</span>
 
-            <form action="#" method="post" id="personalInfo">
+            <form action="" method="post" id="personalInfo">
 
                 <div class="form-group">
 
