@@ -127,6 +127,31 @@ class DB
 
 	}
 
+	public function addUserInfo($email, $firstName, $surname, $address, $zipCode, $city, $status)
+	{
+		$stmt = $this->link->query("INSERT INTO `userinfo`
+			(`email`, `firstname`, `surname`, `address`, `zipcode`, `city`, `status`) 
+			VALUES 
+			('{$email}', '{$firstName}', '{$surname}', '{$address}', '{$zipCode}', '{$city}', '{$status}')");
+		
+		$stmt = $this->link->prepare("SELECT id FROM userinfo ORDER BY time DESC");
+		$stmt->execute();
+
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+	public function addOrderInfo($user, $product, $amount)
+	{
+		$stmt = $this->link->query("INSERT INTO `orderinfo`
+			(`user`, `product`, `amount`) 
+			VALUES 
+			({$user}, {$product}, {$amount})");
+
+		$result = "Added Order Info";
+		
+		return $result;
+	}
+
 	public function getCon()
 	{
 		return $this->link;
