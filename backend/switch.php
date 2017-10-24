@@ -39,13 +39,13 @@ if(isset($_POST['data'])){
 			break;
 		
 		default:
-			echo "Invalid command \n";
+			echo json_encode("Invalid command");
 			break;
 	}
 
 }
 else{
-	echo "Invalid syntax";
+	echo json_encode("Invalid syntax");
 }
 ?>
 

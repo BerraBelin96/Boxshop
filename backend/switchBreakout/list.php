@@ -16,7 +16,7 @@ switch ($dataAction) {
 			echo json_encode($dbList);
 		}
 		else{
-			echo "Specifier not set \n";
+			echo json_encode("Specifier not set");
 		}
 		break;
 
@@ -26,7 +26,7 @@ switch ($dataAction) {
 			echo json_encode($dbList);
 		}
 		else{
-			echo "Specifier not set \n";
+			echo json_encode("Specifier not set");
 		}
 		break;
 
@@ -36,12 +36,12 @@ switch ($dataAction) {
 			echo json_encode($dbList);
 		}
 		else{
-			echo "Specifier not set \n";
+			echo json_encode("Specifier not set");
 		}
 		break;
 
 	default:
-		Echo "Invalid action type \n";
+		echo json_encode("Invalid action type");
 		break;
 }
 ?>
