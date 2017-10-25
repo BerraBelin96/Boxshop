@@ -4,16 +4,16 @@ if(isset($_POST['cart'])){
 	$cart = json_decode($_POST['cart']);
 }
 
-if(isset($_POST['userInfo'])){
-	$userInfo = json_decode($_POST['userInfo']);
+if(isset($_POST['userinfo'])){
+	$userInfo = json_decode($_POST['userinfo']);
 }
 
-$email = $userInfo[0]->email;
-$firstName = $userInfo[0]->firstname;
-$surname = $userInfo[0]->surname;
-$address = $userInfo[0]->address;
-$zipCode = $userInfo[0]->zipcode;
-$city = $userInfo[0]->city;
+$email = $userInfo->email;
+$firstName = $userInfo->firstname;
+$surname = $userInfo->surname;
+$address = $userInfo->address;
+$zipCode = $userInfo->zipcode;
+$city = $userInfo->city;
 $status = "obetald";
 
 $dbUserResult = $db->addUserInfo($email, $firstName, $surname, $address, $zipCode, $city, $status);
