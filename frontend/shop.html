@@ -180,9 +180,13 @@ var userValue = {};
 $.each(userInfo, function(i, field) {
     userValue[field.name] = field.value;
 });
-JSON.stringify(userValue);
+var userValue2 = JSON.stringify(userValue);
+var userValue3 = [];
+$.each(userValue, function(i, field){
+    userValue3[i] =+ userValue[i];
+});
 
-console.log(cart, userValue);
+console.log(cart, userValue, userValue2, userValue3);
 
 
 $.ajax({
@@ -314,7 +318,7 @@ $.ajax({
 
                     <label for="name">Postnummer:</label>
 
-                    <input type="text" name="zip-code" class="form-control modal-control" id="name">
+                    <input type="text" name="zipcode" class="form-control modal-control" id="name">
 
                 </div>
 
