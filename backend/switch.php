@@ -9,10 +9,13 @@ if(isset($_POST['data'])){
 	
 	$dataComand = $data[0]->comand;
 	$dataComand = filter_var($dataComand, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
+	
 	if(isset($data[0]->action)){
 		$dataAction = $data[0]->action;
 		$dataAction = filter_var($dataAction, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
 	}
+
+	//Denna switch case används till att specificera vilken kod som ska användas till de olika kommandona från frontend sidan. 
 	switch ($dataComand) {
 		case 'list':
 
