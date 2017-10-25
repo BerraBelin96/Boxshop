@@ -183,8 +183,10 @@ $.each(userInfo, function(i, field) {
 var userValue2 = JSON.stringify(userValue);
 var userValue3 = [];
 $.each(userValue, function(i, field){
-    userValue3[i] =+ userValue[i];
+    userValue3[i] = userValue[i];
 });
+
+
 
 console.log(cart, userValue, userValue2, userValue3);
 
@@ -198,7 +200,7 @@ $.ajax({
         data : JSON.stringify([{
             comand: "cart"
         }]),
-        cart : JSON.stringify(cart),
+        cart : cart,
         userinfo : JSON.stringify(userValue)
 
     },
