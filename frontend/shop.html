@@ -171,6 +171,8 @@ failure: function (errMsg) {
 
 $("#submit").click(function (event) {
 
+event.preventDefault();
+
 
 var cart = localStorage.getItem("shoppingCart");
 var userInfo = $("#personalInfo").serializeArray();
